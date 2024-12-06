@@ -172,6 +172,14 @@ nav li {
   border: 1px solid var(--secondary-color);
 }
 
+/************ INVENTORY DISPLAY ************/
+
+#inv-display {
+  display: grid;
+  
+}
+
+
 /************ FOOTER ************/
 
 footer {
