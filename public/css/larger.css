@@ -122,5 +122,19 @@
     #inv-display {
         padding: 2rem 0;
     }
+
+    /************ DETAIL DISPLAY ************/
+
+    #details-display {
+        grid-template-columns: 1fr 1fr;
+        justify-content: center;
+        align-items: center;
+        padding: 0.5rem 0;
+    }
+
+    #details-display img {
+        align-self: start;
+        height: auto;
+    }
     
   }

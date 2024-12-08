@@ -14,6 +14,7 @@
     --secondary-color: #000000;
     --accent-color-1: #0d1a2c;
     --accent-color-2: #029ec5;
+    --accent-color-3: #e9e9e9;
 }
 
 #wrapper {
@@ -84,7 +85,7 @@ nav li a:hover {
 /************ MAIN ************/
 
 h1 {
-    font-size: 1.1em
+    font-size: 1.2em
 }
 
 /************ HERO CONTAINER ************/
@@ -228,9 +229,46 @@ h1 {
     font-weight: bold;
 }
 
+/************ DETAIL DISPLAY ************/
+
+#details-display {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem 0;
+}
+
+#details-display img {
+    width: 90%;
+    height: 200px;
+    border-radius: 5px;
+    object-fit: cover;
+    justify-self: center;
+    align-self: center;
+    margin: 0.5rem 0;
+}
+
+#details-info h2 {
+    font-size: 1.2em;
+    margin: 0.5rem 0;
+}
+
+.details-list {
+    margin: 1rem 0;
+    list-style-type: none;
+}
+
+.details-list > * {
+    padding: 1rem;
+}
+
+.details-list > *:nth-child(odd) {
+    background-color: var(--accent-color-3);
+}
 
 /************ FOOTER ************/
 
 footer {
     font-size: 0.8rem;
+    margin: 1rem 0;
 }

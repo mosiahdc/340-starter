@@ -58,4 +58,46 @@ Util.buildClassificationGrid = async function(data){
   return grid
 }
 
+/* **************************************
+* Build details view
+* ************************************ */
+Util.buildDetailsGrid = async function (data) {
+  let grid
+  if (data.length > 0) {
+      grid = '<article id="details-display">'
+      grid +=
+          '<img src="' +
+          data[0].inv_image +
+          '" alt="Image of ' +
+          data[0].inv_make +
+          ' ' +
+          data[0].inv_model +
+          ' on CSE Motors" />'
+      grid += '<div id="details-info">'
+      grid += '<h2>' + data[0].inv_make + ' ' + data[0].inv_model + ' ' + 'Details</h2>'
+      grid += '<ul class="details-list">'
+
+      grid += '<li><span class="checkbox"><strong>Price: $' + new Intl.NumberFormat('en-US').format(data[0].inv_price) + '</strong></li>'
+      grid += '<li><span class="checkbox"><strong>Description:</strong> ' + data[0].inv_description + '</li>'
+      grid += '<li><span class="checkbox"></span><strong>Color:</strong> &nbsp;' + data[0].inv_color + '</li>'
+      grid +=
+          '<li><span class="checkbox"></span><strong>Miles:</strong> &nbsp;' +
+          new Intl.NumberFormat('en-US').format(data[0].inv_miles) +
+          '</li>'
+      grid += '</ul>'
+      grid += '</div>'
+      grid += '</article>'
+  } else {
+      grid += '<p class="notice">Sorry, no matching vehicles details could be found.</p>'
+  }
+  return grid
+}
+
+/* ****************************************
+ * Middleware For Handling Errors
+ * Wrap other function in this for 
+ * General Error Handling
+ **************************************** */
+Util.handleErrors = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next)
+
 module.exports = Util
