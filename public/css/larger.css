@@ -1,0 +1,140 @@
+/********** MEDIA SCREEN 640px **********/
+/****************************************/
+/****************************************/
+
+@media only screen and (min-width:640px) {
+
+    body {
+        background-image: url('/images/site/small_check.jpg');
+    }
+  
+    #wrapper {
+        grid-template-columns: 1fr;
+        max-width: 90vw;
+        padding: 1rem;
+        margin: 1rem auto;
+        border: 5px solid var(--accent-color-2);
+        border-radius: 5px;
+        background-color: var(--primary-color);
+    }
+  
+    /************ HEADER ************/
+  
+    header {
+        margin: 0;
+    }
+  
+    .siteName a {
+        font-size: 2rem;
+    }
+  
+    #tools a {
+        font-size: 0.9rem;
+    }
+  
+    /************ NAVIGATION ************/
+  
+    nav {
+        margin: 1.5rem 0;
+    }
+  
+    nav li {
+        color: var(--primary-color);
+        margin: 0 15px;
+        padding: 10px;
+        font-size: 1rem;
+    }
+  
+    /************ MAIN ************/
+
+    h1 {
+        font-size: 1.6em;
+    }
+  
+    /************ HERO CONTAINER ************/
+  
+    #hero img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        position: static;
+    }
+  
+    #hero-label {
+        left: 7%;
+    }
+  
+    #hero-label h3 {
+        font-size: 1.5em;
+    }
+  
+    #hero-label ul {
+        font-size: 1.2em;
+    }
+  
+    #hero-label .button {
+        padding: 0.5rem 1.5rem;
+        margin-top: 1.5rem;
+    }
+  
+    #hero-label a {
+        font-size: 1.2em;
+    }
+  
+    /************ INFO CONTAINER ************/
+  
+    #info-container {
+        display: grid;
+        grid-template: 1fr / 1fr 1fr;
+        gap: 1rem;
+    }
+  
+    #info-container h2 {
+        font-size: 1.2em;
+        padding: 1.5rem 0;;
+    }
+  
+    #info-reviews {
+        grid-column: 2/3;
+    }
+  
+    #info-reviews li {
+        font-size: 0.95em;
+        padding-top: 0;
+        margin-bottom: 0.25rem;
+    }
+  
+    #info-upgrades {
+        grid-column: 1/2;
+        grid-row: 1;
+    }
+  
+    #cards-container {
+        gap: 0.5rem;
+    }
+  
+    .card {
+        margin: 0;
+    }
+
+    /************ INVENTORY DISPLAY ************/
+
+    #inv-display {
+        padding: 2rem 0;
+    }
+
+    /************ DETAIL DISPLAY ************/
+
+    #details-display {
+        grid-template-columns: 1fr 1fr;
+        justify-content: center;
+        align-items: center;
+        padding: 0.5rem 0;
+    }
+
+    #details-display img {
+        align-self: start;
+        height: auto;
+    }
+    
+  }

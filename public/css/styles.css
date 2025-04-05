@@ -1,301 +1,359 @@
+/******* Change Box Model ***************/
 *,
- *:before,
- *:after {
-   margin: 0;
-   padding: 0;
-   box-sizing: border-box;
-   font-family: "Montserrat", sans-serif;
- }
- 
- 
- :root {
-   --primary-color: #ffffff;
-   --secondary-color: #000000;
-   --accent-color-1: #0d1a2c;
-   --accent-color-2: #029ec5;
- }
- 
- #wrapper {
-   position: relative;
-   display: grid;
-   align-items: center;
-   min-height: 75vh;
-   margin: 0.5rem;
- }
- 
- /************ HEADER ************/
- header {
-   display: grid;
-   grid-template-columns: 1fr 1fr;
-   color: var(--accent-color-1);
-   margin-top: 1rem;
- }
- 
- .siteName a {
-   font-size: 1.85em;
-   font-weight: 500;
- }
- 
- #tools {
-   justify-self: right;
- }
- 
- #tools a {
-   font-size: .7em;
- }
- 
- .siteName a,
- #tools a {
-   color: var(--accent-color-1);
-   text-decoration: none;
- }
- 
- /************ NAVIGATION ************/
- nav {
-   margin: 1rem 0;
- }
- 
- nav ul {
-   display: flex;
-   flex-direction: row;
-   list-style: none;
-   background-color: var(--accent-color-1);
-   text-align: center;
-   justify-content: space-around;
- }
- 
- nav li {
-   color: var(--primary-color);
-   padding: 10px 0;
-   font-size: 0.8rem;
- }
- 
- /************ MAIN ************/
- 
- /************ HERO CONTAINER ************/
- 
- #hero-container h1 {
-   font-size: 1.1em
- }
- 
- #hero{
-   display: flex;
-   justify-content: center;
-   align-items: center;
- 	margin: 10px 0;
- 	position: relative;
- }
- 
- #hero img {
- 	width: 80%;
-   height: auto;
- 	object-fit: cover;
-   position: relative;
-   left: 10%;
- }
- 
- #hero-label {
- 	position: absolute;
-   left: 1%;
-   background: linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75));
- 	box-shadow: 0 0 3rem #fff;
-   color: var(--accent-color-2);
- }
- 
- #hero-label h3,
- #info-container h2{
-   font-size: 1em;
- }
- 
- #hero-label ul {
-   list-style: none;
-   font-size: 0.8em;
- }
- 
- #hero-label .button {
-   display: inline-block;
-   padding: 0.5rem 0.6rem;
-   background-color: var(--accent-color-2);
-   text-align: center;
-   cursor: pointer;
- }
- 
- #hero-label a {
-   text-decoration: none;
-   font-size: 0.8em;
-   font-weight: bold;
-   color: var(--secondary-color);
- }
- 
- /************ INFO CONTAINER ************/
- 
- #info-container h2{
-   margin: 0.5rem 0;
- }
- 
- #info-reviews,
- #info-upgrades {
-   margin: 1rem 0;
- }
- 
- #info-reviews li {
-   position: relative;
-   left: 5%;
-   padding: 0.4rem 0;
-   font-size: 0.8em;
- }
- 
- #info-reviews ul{
-   list-style: disc;
- }
- 
- #cards-container {
-   display: grid;
-   grid-template: 1fr 1fr / 1fr 1fr;
-   gap: 0.5rem;
- }
- 
- .card {
-   display: grid;
-   grid-template-rows: 1fr 1fr 1fr;
-   text-align: center;
-   font-size: 0.85rem;
- }
- 
- .img-box {
-   grid-row: 1/3;
-   display: flex;
-   justify-content: center; 
-   align-items: center;
-   background-color: var(--accent-color-2);
-   border: 1px solid var(--secondary-color);
- }
- 
- /************ FOOTER ************/
- 
- footer {
-   font-size: 0.8rem;
- }
- 
- 
- 
- /********** MEDIA SCREEN 640px **********/
- /****************************************/
- /****************************************/
- 
- @media only screen and (min-width:640px) {
- 
-   body {
-     background-image: url('/images/site/small_check.jpg');
-   }
- 
-   #wrapper {
-     grid-template-columns: 1fr;
-     max-width: 90vw;
-     padding: 1rem;
-     margin: 1rem auto;
-     border: 5px solid var(--accent-color-2);
-     border-radius: 5px;
-     background-color: var(--primary-color);
-   }
- 
-   /************ HEADER ************/
- 
-   header {
-     margin: 0;
-   }
- 
-   .siteName a {
-     font-size: 2rem;
-   }
- 
-   #tools a {
-     font-size: 0.9rem;
-   }
- 
-   /************ NAVIGATION ************/
- 
-   nav {
-     margin: 1.5rem 0;
-   }
- 
-   nav li {
-     color: var(--primary-color);
-     margin: 0 15px;
-     padding: 10px;
-     font-size: 1rem;
-   }
- 
-   /************ MAIN ************/
- 
-   /************ HERO CONTAINER ************/
- 
-   #hero-container h1 {
-     font-size: 1.6em;
-   }
- 
-   #hero img {
-     width: 100%;
-     height: auto;
-     object-fit: cover;
-     position: static;
-   }
- 
-   #hero-label {
-     left: 7%;
-   }
- 
-   #hero-label h3 {
-     font-size: 1.5em;
-   }
- 
-   #hero-label ul {
-     font-size: 1.2em;
-   }
- 
-   #hero-label .button {
-     padding: 0.5rem 1.5rem;
-     margin-top: 1.5rem;
-   }
- 
-   #hero-label a {
-     font-size: 1.2em;
-   }
- 
-   /************ INFO CONTAINER ************/
- 
-   #info-container {
-     display: grid;
-     grid-template: 1fr / 1fr 1fr;
-     gap: 1rem;
-   }
- 
-   #info-container h2 {
-     font-size: 1.2em;
-     padding: 1.5rem 0;;
-   }
- 
-   #info-reviews {
-     grid-column: 2/3;
-   }
- 
-   #info-reviews li {
-     font-size: 0.95em;
-     padding-top: 0;
-     margin-bottom: 0.25rem;
-   }
- 
-   #info-upgrades {
-     grid-column: 1/2;
-     grid-row: 1;
-   }
- 
-   #cards-container {
-     gap: 0.5rem;
-   }
- 
-   .card {
-     margin: 0;
-   }
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
 
+
+:root {
+  --primary-color: #ffffff;
+  --secondary-color: #000000;
+  --accent-color-1: #0d1a2c;
+  --accent-color-2: #029ec5;
+}
+
+#wrapper {
+  position: relative;
+  display: grid;
+  align-items: center;
+  min-height: 75vh;
+  margin: 0.5rem;
+}
+
+/************ HEADER ************/
+header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  color: var(--accent-color-1);
+  margin-top: 1rem;
+}
+
+.siteName a {
+  font-size: 1.85em;
+  font-weight: 500;
+}
+
+#tools {
+  justify-self: right;
+}
+
+#tools a {
+  font-size: .7em;
+}
+
+.siteName a,
+#tools a {
+  color: var(--accent-color-1);
+  text-decoration: none;
+}
+
+/************ NAVIGATION ************/
+nav {
+  margin: 1rem 0;
+}
+
+nav ul {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+  background-color: var(--accent-color-1);
+  text-align: center;
+  justify-content: space-around;
+}
+
+nav li {
+  color: var(--primary-color);
+  padding: 10px 0;
+  font-size: 0.8rem;
+}
+
+
+nav li a {
+  text-decoration: none;
+  color: var(--primary-color);
+  padding: 0.2rem;
+}
+
+nav li a:hover {
+  color: var(--secondary-color);
+  background-color: var(--primary-color);
+}
+
+/************ MAIN ************/
+
+/************ HERO CONTAINER ************/
+
+#hero-container h1 {
+  font-size: 1.1em
+}
+
+#hero{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+	margin: 10px 0;
+	position: relative;
+}
+
+#hero img {
+	width: 80%;
+  height: auto;
+	object-fit: cover;
+  position: relative;
+  left: 10%;
+}
+
+#hero-label {
+	position: absolute;
+  left: 1%;
+  background: linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75));
+	box-shadow: 0 0 3rem #fff;
+  color: var(--accent-color-2);
+}
+
+#hero-label h3,
+#info-container h2{
+  font-size: 1em;
+}
+
+#hero-label ul {
+  list-style: none;
+  font-size: 0.8em;
+}
+
+#hero-label .button {
+  display: inline-block;
+  padding: 0.5rem 0.6rem;
+  background-color: var(--accent-color-2);
+  text-align: center;
+  cursor: pointer;
+}
+
+#hero-label a {
+  text-decoration: none;
+  font-size: 0.8em;
+  font-weight: bold;
+  color: var(--secondary-color);
+}
+
+/************ INFO CONTAINER ************/
+
+#info-container h2{
+  margin: 0.5rem 0;
+}
+
+#info-reviews,
+#info-upgrades {
+  margin: 1rem 0;
+}
+
+#info-reviews li {
+  position: relative;
+  left: 5%;
+  padding: 0.4rem 0;
+  font-size: 0.8em;
+}
+
+#info-reviews ul{
+  list-style: disc;
+}
+
+#cards-container {
+  display: grid;
+  grid-template: 1fr 1fr / 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.card {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+.img-box {
+  grid-row: 1/3;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  background-color: var(--accent-color-2);
+  border: 1px solid var(--secondary-color);
+}
+
+/************ INVENTORY DISPLAY ************/
+
+#inv-display {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  background-color: #fff;
+  place-items: center;
+  list-style: none;
+}
+
+#inv-display li {
+  color: #000;
+  border: 1px solid black;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 10px 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3), 0 6px 20px 0 rgba(0, 0, 0, 0.29);
+  text-align: center;
+  padding: 1rem;
+  width: 300px;
+  height: 300px;
+}
+
+#inv-display li img {
+  width: 100%;
+  height: 150px;
+  border-radius: 5px;
+}
+
+.namePrice hr {
+  width: 100%;
+  margin: 5px auto;
+  border: 3.5px solid var(--secondary-color);
+}
+
+.namePrice h2 {
+  margin: 1rem auto;
+}
+
+.namePrice span {
+  font-weight: bold;
+}
+
+
+/************ FOOTER ************/
+
+footer {
+  font-size: 0.8rem;
+}
+
+
+
+/********** MEDIA SCREEN 640px **********/
+/****************************************/
+/****************************************/
+
+@media only screen and (min-width:640px) {
+
+  body {
+    background-image: url('/images/site/small_check.jpg');
   }
+
+  #wrapper {
+    grid-template-columns: 1fr;
+    max-width: 90vw;
+    padding: 1rem;
+    margin: 1rem auto;
+    border: 5px solid var(--accent-color-2);
+    border-radius: 5px;
+    background-color: var(--primary-color);
+  }
+
+  /************ HEADER ************/
+
+  header {
+    margin: 0;
+  }
+
+  .siteName a {
+    font-size: 2rem;
+  }
+
+  #tools a {
+    font-size: 0.9rem;
+  }
+
+  /************ NAVIGATION ************/
+
+  nav {
+    margin: 1.5rem 0;
+  }
+
+  nav li {
+    color: var(--primary-color);
+    margin: 0 15px;
+    padding: 10px;
+    font-size: 1rem;
+  }
+
+  /************ MAIN ************/
+
+  /************ HERO CONTAINER ************/
+
+  #hero-container h1 {
+    font-size: 1.6em;
+  }
+
+  #hero img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    position: static;
+  }
+
+  #hero-label {
+    left: 7%;
+  }
+
+  #hero-label h3 {
+    font-size: 1.5em;
+  }
+
+  #hero-label ul {
+    font-size: 1.2em;
+  }
+
+  #hero-label .button {
+    padding: 0.5rem 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  #hero-label a {
+    font-size: 1.2em;
+  }
+
+  /************ INFO CONTAINER ************/
+
+  #info-container {
+    display: grid;
+    grid-template: 1fr / 1fr 1fr;
+    gap: 1rem;
+  }
+
+  #info-container h2 {
+    font-size: 1.2em;
+    padding: 1.5rem 0;;
+  }
+
+  #info-reviews {
+    grid-column: 2/3;
+  }
+
+  #info-reviews li {
+    font-size: 0.95em;
+    padding-top: 0;
+    margin-bottom: 0.25rem;
+  }
+
+  #info-upgrades {
+    grid-column: 1/2;
+    grid-row: 1;
+  }
+
+  #cards-container {
+    gap: 0.5rem;
+  }
+
+  .card {
+    margin: 0;
+  }
+  
+}
