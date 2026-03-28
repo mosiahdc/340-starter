@@ -53,7 +53,41 @@ Util.buildClassificationGrid = async function (data) {
         })
         grid += '</ul>'
     } else {
-        grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
+        grid = '<p class="notice">Sorry, no matching vehicles could be found.</p>'
+    }
+    return grid
+}
+
+/* **************************************
+* Build details view
+* ************************************ */
+Util.buildDetailsGrid = async function (data) {
+    let grid
+    if (data.length > 0) {
+        grid = '<article id="details-display">'
+        grid +=
+            '<img src="' +
+            data[0].inv_image +
+            '" alt="Image of ' +
+            data[0].inv_make +
+            ' ' +
+            data[0].inv_model +
+            ' on CSE Motors" />'
+        grid += '<div id="details-info">'
+        grid += '<h2>' + data[0].inv_make + ' ' + data[0].inv_model + ' ' + 'Details</h2>'
+        grid += '<ul class="details-list">'
+
+        grid += '<li><strong>Price:</strong> <span>$' + new Intl.NumberFormat('en-US').format(data[0].inv_price) + '</span></li>'
+        grid += '<li><strong>Description:</strong> <span>' + data[0].inv_description + '</span></li>'
+        grid += '<li><strong>Color:</strong> <span>' + data[0].inv_color + '</span></li>'
+        grid += '<li><strong>Miles:</strong> <span>' +
+            new Intl.NumberFormat('en-US').format(data[0].inv_miles) +
+            '</span></li>'
+        grid += '</ul>'
+        grid += '</div>'
+        grid += '</article>'
+    } else {
+        grid = '<p class="notice">Sorry, no matching vehicles details could be found.</p>'
     }
     return grid
 }
