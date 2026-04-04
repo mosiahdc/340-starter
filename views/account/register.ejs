@@ -1,5 +1,7 @@
 <h1><%= title %></h1>
 
+<%- messages() %>
+
 <% if (errors) { %>
   <ul class="notice">
     <% errors.array().forEach(error => { %>
@@ -8,38 +10,20 @@
   </ul>
 <% } %>
 
-<form action="/account/register" method="post" id="registerForm">
+<form action="/account/register" method="post" id="registerForm" class="form-container">
   <fieldset>
     <label for="account_firstname"
       >First Name <span class="required">*</span></label
     >
-    <input
-      type="text"
-      name="account_firstname"
-      id="account_firstname"
-      autocomplete="given-name"
-      required
-    />
+    <input type="text" name="account_firstname" id="accountFirstname" required value="<%= locals.account_firstname %>">
 
     <label for="account_lastname"
       >Last Name <span class="required">*</span></label
     >
-    <input
-      type="text"
-      name="account_lastname"
-      id="account_lastname"
-      autocomplete="family-name"
-      required
-    />
+    <input type="text" name="account_lastname" id="accountLastname" required value="<%= locals.account_lastname %>">
 
     <label for="account_email">Email <span class="required">*</span></label>
-    <input
-      type="email"
-      name="account_email"
-      id="account_email"
-      autocomplete="email"
-      required
-    />
+    <input type="email" name="account_email" id="accountEmail" required value="<%= locals.account_email %>">
 
     <label for="account_password"
       >Password <span class="required">*</span></label

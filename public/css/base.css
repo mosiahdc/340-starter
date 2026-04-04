@@ -277,10 +277,37 @@ footer {
   margin: 1rem 0;
 }
 
-/************ LOGIN FORM ************/
+/************ MANAGEMENT VIEW ************/
 
-#loginForm fieldset {
-  background-color: var(--accent-color-1);
+#management-links {
+  background-color: transparent;
+}
+
+#management-links ul {
+  list-style: none;
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 300px;
+}
+
+#management-links a {
+  display: inline-block;
+  color: var(--accent-color-1);
+  text-decoration: underline;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+#management-links a:hover {
+  color: var(--accent-color-2);
+}
+
+/************ SHARED FORM STYLES ************/
+
+.form-container fieldset {
+  background-color: var(--accent-color-2);
   border: none;
   border-radius: 8px;
   padding: 2rem;
@@ -291,15 +318,40 @@ footer {
   gap: 0.5rem;
 }
 
-#loginForm label {
+.form-container legend {
+  color: var(--primary-color);
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0 0.25rem;
+  font-variant: normal;
+  font-style: normal;
+  text-transform: none;
+  margin-bottom: 0.5rem;
+}
+
+.form-container p,
+.form-container .form-note {
+  color: var(--primary-color);
+  font-size: 0.85rem;
+  font-style: normal;
+  font-variant: normal;
+  opacity: 0.9;
+  margin-bottom: 0.25rem;
+}
+
+.form-container label {
   color: var(--primary-color);
   font-size: 0.95rem;
   font-weight: 600;
   margin-top: 0.75rem;
 }
 
-#loginForm input[type="email"],
-#loginForm input[type="password"] {
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container input[type="password"],
+.form-container input[type="number"],
+.form-container textarea,
+.form-container select {
   width: 100%;
   padding: 0.75rem 1rem;
   border: none;
@@ -309,36 +361,53 @@ footer {
   color: var(--secondary-color);
 }
 
-#loginForm input:focus {
-  outline: 2px solid var(--accent-color-2);
+.form-container textarea {
+  min-height: 100px;
+  resize: vertical;
 }
 
-#loginForm .password-rules {
+.form-container input:focus,
+.form-container textarea:focus,
+.form-container select:focus {
+  outline: 2px solid var(--accent-color-1);
+}
+
+.form-container .password-rules {
   color: var(--primary-color);
   font-size: 0.8rem;
-  margin: 0.25rem 0;
   opacity: 0.85;
+  margin: 0.25rem 0;
 }
 
-#loginForm button[type="submit"] {
+.form-container button[type="submit"] {
   align-self: center;
   margin-top: 1.25rem;
   padding: 0.5rem 2.5rem;
   background-color: var(--primary-color);
-  color: var(--accent-color-1);
-  border: 1px solid var(--accent-color-2);
+  color: var(--accent-color-2);
+  border: 1px solid var(--accent-color-1);
   border-radius: 50px;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   cursor: pointer;
 }
 
-#loginForm button[type="submit"]:hover {
-  background-color: var(--accent-color-2);
+.form-container button[type="submit"]:hover {
+  background-color: var(--accent-color-1);
   color: var(--primary-color);
+  border-color: var(--accent-color-1);
 }
+
+/************ WIDER FORMS (inv forms) ************/
+
+#addClassForm.form-container fieldset,
+#addInvForm.form-container fieldset {
+  max-width: 650px;
+}
+
+/************ LOGIN SIGN-UP LINK ************/
 
 #loginForm + p {
   text-align: center;
@@ -352,104 +421,20 @@ footer {
   text-decoration: underline;
 }
 
-/************ REGISTRATION FORM ************/
-
-#registerForm fieldset {
-  background-color: var(--accent-color-1);
-  border: none;
-  border-radius: 8px;
-  padding: 2rem;
-  max-width: 500px;
-  margin: 2rem auto;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-#registerForm legend {
-  color: var(--primary-color);
-  font-size: 1.1rem;
-  font-weight: 500;
-  margin-bottom: 0.5rem;
-  padding: 0 0.25rem;
-}
-
-#registerForm label {
-  color: var(--primary-color);
-  font-size: 0.95rem;
-  font-weight: 600;
-  margin-top: 0.75rem;
-}
-
-#registerForm input[type="text"],
-#registerForm input[type="email"],
-#registerForm input[type="password"] {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  border: none;
-  border-radius: 6px;
-  background-color: var(--primary-color);
-  font-size: 1rem;
-  color: var(--secondary-color);
-}
-
-#registerForm input:focus {
-  outline: 2px solid var(--accent-color-2);
-}
-
-.password-rules {
-  color: var(--primary-color);
-  font-size: 0.8rem;
-  margin: 0.25rem 0;
-  opacity: 0.85;
-}
-
-.password-wrapper {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-}
-
-.password-wrapper input {
-  flex: 1;
-}
-
-#togglePassword {
-  padding: 0.5rem 1rem;
-  background-color: transparent;
-  color: var(--primary-color);
-  border: 1px solid var(--primary-color);
-  border-radius: 6px;
-  font-size: 0.8rem;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-#togglePassword:hover {
-  background-color: var(--accent-color-2);
-  border-color: var(--accent-color-2);
-}
-
-#registerForm button[type="submit"] {
-  align-self: center;
-  margin-top: 1.25rem;
-  padding: 0.5rem 2.5rem;
-  background-color: var(--primary-color);
-  color: var(--accent-color-1);
-  border: 1px solid var(--accent-color-2);
-  border-radius: 50px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-
-#registerForm button[type="submit"]:hover {
-  background-color: var(--accent-color-2);
-  color: var(--primary-color);
-}
+/************ REQUIRED & NOTICE ************/
 
 .required {
-  color: var(--accent-color-2);
+  color: var(--accent-color-1);
+}
+
+ul.notice {
+  list-style: disc;
+  color: red;
+  font-weight: 600;
+  margin: 0.5rem 0 0.5rem 1.5rem;
+  font-size: 0.95rem;
+}
+
+ul.notice li {
+  padding: 0.15rem 0;
 }

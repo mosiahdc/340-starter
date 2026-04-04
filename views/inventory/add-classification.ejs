@@ -1,0 +1,30 @@
+<h1><%= title %></h1>
+<%- messages() %>
+
+<% if (errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<form action="/inv/add-classification" method="post" id="addClassForm" class="form-container">
+  <fieldset>
+    <p>Name must be alphabetic characters only.</p>
+
+    <label for="classification_name">Classification Name <span class="required" aria-label="required">*</span></label>
+    <input
+      type="text"
+      name="classification_name"
+      id="classification_name"
+      placeholder="Alphabetic characters only"
+      pattern="^[a-zA-Z0-9]+$"
+      title="No spaces or special characters allowed"
+      autocomplete="off"
+      required
+    >
+
+    <button type="submit">Add Classification</button>
+  </fieldset>
+</form>
