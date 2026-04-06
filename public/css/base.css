@@ -18,8 +18,7 @@
 
 #wrapper {
   position: relative;
-  display: grid;
-  align-items: center;
+  display: block;
   margin: 0.5rem;
 }
 
@@ -52,7 +51,7 @@ header {
 
 /************ NAVIGATION ************/
 nav {
-  margin: 1rem 0;
+  margin: 0;
 }
 
 nav ul {
@@ -83,8 +82,17 @@ nav li a:hover {
 
 /************ MAIN ************/
 
+main {
+  padding: 1.5rem 0;
+}
+
 h1 {
   font-size: 1.2em;
+  margin-bottom: 1rem;
+}
+
+main p {
+  margin-bottom: 0.5rem;
 }
 
 /************ HERO CONTAINER ************/
@@ -400,10 +408,17 @@ footer {
   border-color: var(--accent-color-1);
 }
 
+.form-container button[type="submit"]:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 /************ WIDER FORMS (inv forms) ************/
 
 #addClassForm.form-container fieldset,
-#addInvForm.form-container fieldset {
+#addInvForm.form-container fieldset,
+#updateForm.form-container fieldset {
   max-width: 650px;
 }
 
