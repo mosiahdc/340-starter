@@ -157,4 +157,23 @@ Util.checkLogin = (req, res, next) => {
     }
 }
 
+/* ****************************************
+ * Middleware to check Employee or Admin account type
+ * Only allows access to inventory management routes
+ **************************************** */
+Util.checkAccountType = (req, res, next) => {
+    if (res.locals.loggedin) {
+        const accountType = res.locals.accountData.account_type
+        if (accountType === "Employee" || accountType === "Admin") {
+            next()
+        } else {
+            req.flash("notice", "You do not have permission to access that area.")
+            return res.redirect("/account/login")
+        }
+    } else {
+        req.flash("notice", "Please log in.")
+        return res.redirect("/account/login")
+    }
+}
+
 module.exports = Util

@@ -1,0 +1,81 @@
+<h1><%= title %></h1>
+
+<%- messages() %>
+
+<% if (locals.errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<form action="/account/update" method="post" id="updateForm" class="form-container" novalidate="novalidate">
+  <fieldset>
+
+    <label for="account_firstname">First Name <span class="required" aria-label="required">*</span></label>
+    <input
+      type="text"
+      name="account_firstname"
+      id="account_firstname"
+      placeholder="First name"
+      required
+      pattern="[A-Za-z ]+"
+      autocomplete="given-name"
+      title="First name is required."
+      value="<%= locals.account_firstname ? account_firstname : accountData.account_firstname %>"
+    >
+
+    <label for="account_lastname">Last Name <span class="required" aria-label="required">*</span></label>
+    <input
+      type="text"
+      name="account_lastname"
+      id="account_lastname"
+      placeholder="Last name"
+      required
+      pattern="[A-Za-z ]+"
+      autocomplete="family-name"
+      title="Last name is required."
+      value="<%= locals.account_lastname ? account_lastname : accountData.account_lastname %>"
+    >
+
+    <label for="account_email">Email Address <span class="required" aria-label="required">*</span></label>
+    <input
+      type="email"
+      name="account_email"
+      id="account_email"
+      placeholder="email@example.com"
+      required
+      autocomplete="email"
+      title="A valid email address is required."
+      value="<%= locals.account_email ? account_email : accountData.account_email %>"
+    >
+
+    <input type="hidden" name="account_id" value="<%= accountData.account_id %>">
+
+    <button type="submit">Update Account</button>
+  </fieldset>
+</form>
+
+<form action="/account/update-password" method="post" id="passwordForm" class="form-container" novalidate="novalidate">
+  <fieldset>
+
+    <p class="form-note">Enter a new password below to replace your current one.</p>
+    <p class="password-rules">Requirements: minimum 12 characters, at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character (!@#$%^&*, etc.).</p>
+
+    <label for="account_password">New Password <span class="required" aria-label="required">*</span></label>
+    <input
+      type="password"
+      name="account_password"
+      id="account_password"
+      required
+      pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
+      autocomplete="new-password"
+      title="Password must be at least 12 characters with uppercase, lowercase, number, and special character."
+    >
+
+    <input type="hidden" name="account_id" value="<%= accountData.account_id %>">
+
+    <button type="submit">Change Password</button>
+  </fieldset>
+</form>

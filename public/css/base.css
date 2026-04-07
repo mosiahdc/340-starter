@@ -418,7 +418,8 @@ footer {
 
 #addClassForm.form-container fieldset,
 #addInvForm.form-container fieldset,
-#updateForm.form-container fieldset {
+#updateForm.form-container fieldset,
+#passwordForm.form-container fieldset {
   max-width: 650px;
 }
 
