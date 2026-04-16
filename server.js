@@ -17,6 +17,7 @@ const errorRoute = require('./routes/errorRoute')
 const session = require("express-session")
 const pool = require('./database/')
 const accountRoute = require("./routes/accountRoute")
+const appointmentRoute = require("./routes/appointmentRoute")
 const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
 
@@ -59,7 +60,7 @@ app.set("layout", "./layouts/layout") // not at views root
  *************************/
 app.use(static)
 
-//Index route
+// Index route
 app.get("/", utilities.handleErrors(baseController.buildHome))
 
 // Inventory routes
@@ -68,8 +69,11 @@ app.use("/inv", utilities.handleErrors(inventoryRoute))
 // Account Route
 app.use("/account", accountRoute)
 
+// Appointment Route
+app.use("/appointments", appointmentRoute)
+
 // Error Route
-app.use("/error", errorRoute);
+app.use("/error", errorRoute)
 
 // File Not Found Route - must be last route in list
 app.use(async (req, res, next) => {
@@ -84,7 +88,7 @@ app.use(async (req, res, next) => {
 app.use(async (err, req, res, next) => {
   let nav = await utilities.getNav()
   console.error(`Error at: "${req.originalUrl}": ${err.message}`)
-  let message;
+  let message
   if (err.status == 404) {
     message = err.message
   } else {

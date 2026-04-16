@@ -1,0 +1,66 @@
+<h1><%= title %></h1>
+
+<%- messages() %>
+
+<section id="audit-log">
+
+  <% if (logs.length === 0) { %>
+    <p class="notice">No audit log entries found yet.</p>
+
+  <% } else { %>
+    <p class="log-count">Showing <strong><%= logs.length %></strong> log entries, most recent first.</p>
+
+    <table class="appointment-table audit-table">
+      <thead>
+        <tr>
+          <th>Timestamp</th>
+          <th>Staff Member</th>
+          <th>Role</th>
+          <th>Action</th>
+          <th>Appt #</th>
+          <th>Vehicle</th>
+          <th>Client</th>
+          <th>Status Change</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% logs.forEach(log => { %>
+          <tr>
+            <td class="log-timestamp">
+              <%= new Date(log.log_timestamp).toLocaleDateString('en-US', {
+                month: 'short', day: 'numeric', year: 'numeric'
+              }) %>
+              <br>
+              <small><%= new Date(log.log_timestamp).toLocaleTimeString('en-US', {
+                hour: '2-digit', minute: '2-digit'
+              }) %></small>
+            </td>
+            <td><%= log.account_firstname %> <%= log.account_lastname %></td>
+            <td><span class="role-badge role-<%= log.account_type ? log.account_type.toLowerCase() : 'client' %>"><%= log.account_type || 'Client' %></span></td>
+            <td><span class="action-badge action-<%= log.action_type.toLowerCase() %>"><%= log.action_type %></span></td>
+            <td><% if (log.appointment_id) { %>#<%= log.appointment_id %><% } else { %>—<% } %></td>
+            <td><%= log.vehicle_label || '—' %></td>
+            <td><%= log.client_name || '—' %></td>
+            <td>
+              <% if (log.previous_status && log.new_status) { %>
+                <span class="status-badge status-<%= log.previous_status %>"><%= log.previous_status %></span>
+                &rarr;
+                <span class="status-badge status-<%= log.new_status %>"><%= log.new_status %></span>
+              <% } else if (log.new_status) { %>
+                <span class="status-badge status-<%= log.new_status %>"><%= log.new_status %></span>
+              <% } else { %>
+                —
+              <% } %>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } %>
+
+  <div class="mgmt-links">
+    <p><a href="/appointments/manage">&larr; Back to Manage Appointments</a></p>
+    <p><a href="/account/">&larr; Back to Account Management</a></p>
+  </div>
+
+</section>

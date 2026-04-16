@@ -1,0 +1,72 @@
+<h1><%= title %></h1>
+
+<%- messages() %>
+
+<% if (locals.errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<section id="my-appointments">
+
+  <% if (appointments.length === 0) { %>
+    <p class="notice">You have no test drive appointments yet.</p>
+    <p><a href="/" class="btn-link">Browse vehicles to request a test drive</a></p>
+
+  <% } else { %>
+    <table class="appointment-table">
+      <thead>
+        <tr>
+          <th>Vehicle</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Phone</th>
+          <th>Status</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% appointments.forEach(appt => { %>
+          <tr>
+            <td>
+              <a href="/inv/detail/<%= appt.inv_id %>">
+                <%= appt.inv_year %> <%= appt.inv_make %> <%= appt.inv_model %>
+              </a>
+            </td>
+            <td><%= new Date(appt.appointment_date).toLocaleDateString('en-US', { timeZone: 'UTC', year: 'numeric', month: 'short', day: 'numeric' }) %></td>
+            <td>
+              <%
+                const [hour, minute] = appt.appointment_time.split(':')
+                const h = parseInt(hour)
+                const ampm = h >= 12 ? 'PM' : 'AM'
+                const displayHour = h % 12 === 0 ? 12 : h % 12
+              %>
+              <%= displayHour %>:<%= minute %> <%= ampm %>
+            </td>
+            <td><%= appt.contact_phone %></td>
+            <td>
+              <span class="status-badge status-<%= appt.status %>">
+                <%= appt.status.charAt(0).toUpperCase() + appt.status.slice(1) %>
+              </span>
+            </td>
+            <td>
+              <% if (appt.cancellation_reason) { %>
+                <em class="cancel-reason"><%= appt.cancellation_reason %></em>
+              <% } else if (appt.notes) { %>
+                <%= appt.notes %>
+              <% } else { %>
+                —
+              <% } %>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } %>
+
+  <p class="back-link"><a href="/account/">&larr; Back to Account Management</a></p>
+
+</section>

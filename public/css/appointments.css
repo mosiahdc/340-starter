@@ -1,0 +1,382 @@
+/************ TEST DRIVE SECTION ************/
+
+#test-drive-section {
+  margin-top: 2rem;
+  border-top: 3px solid var(--accent-color-2);
+  padding-top: 1.5rem;
+}
+
+#test-drive-section h2 {
+  font-size: 1.2em;
+  margin-bottom: 1rem;
+  color: var(--accent-color-1);
+}
+
+#test-drive-section p {
+  font-size: 0.95rem;
+}
+
+#test-drive-section p a {
+  color: var(--accent-color-2);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+/* Test drive form inherits .form-container styles */
+#testDriveForm.form-container fieldset {
+  max-width: 550px;
+  margin: 1rem 0;
+}
+
+#testDriveForm select,
+#testDriveForm input[type="date"],
+#testDriveForm input[type="tel"],
+#testDriveForm textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--primary-color);
+  font-size: 1rem;
+  color: var(--secondary-color);
+}
+
+/************ APPOINTMENT TABLES ************/
+
+.appointment-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 2rem;
+  font-size: 0.9rem;
+}
+
+.appointment-table thead th {
+  background-color: var(--accent-color-1);
+  color: var(--primary-color);
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+  white-space: nowrap;
+  font-size: 0.85rem;
+}
+
+.appointment-table tbody tr:nth-child(even) {
+  background-color: var(--accent-color-3);
+}
+
+.appointment-table tbody td {
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid #ddd;
+  vertical-align: middle;
+  font-size: 0.88rem;
+}
+
+.appointment-table tbody td a {
+  color: var(--accent-color-2);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.appointment-table tbody td a:hover {
+  text-decoration: underline;
+}
+
+.appointment-table small {
+  color: #666;
+  font-size: 0.78rem;
+}
+
+/************ STATUS BADGES ************/
+
+.status-badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 50px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+
+.status-pending {
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffc107;
+}
+
+.status-confirmed {
+  background-color: #d1e7dd;
+  color: #0a3622;
+  border: 1px solid #198754;
+}
+
+.status-completed {
+  background-color: #cfe2ff;
+  color: #084298;
+  border: 1px solid #0d6efd;
+}
+
+.status-cancelled {
+  background-color: #f8d7da;
+  color: #58151c;
+  border: 1px solid #dc3545;
+}
+
+/************ ACTION BUTTONS ************/
+
+.action-buttons {
+  white-space: nowrap;
+}
+
+.btn-confirm,
+.btn-cancel,
+.btn-complete,
+.btn-delete,
+.btn-submit {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 0.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  transition: opacity 0.2s;
+}
+
+.btn-confirm {
+  background-color: #198754;
+  color: #fff;
+}
+
+.btn-confirm:hover {
+  opacity: 0.85;
+}
+
+.btn-cancel {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.btn-cancel:hover {
+  opacity: 0.85;
+}
+
+.btn-complete {
+  background-color: #0d6efd;
+  color: #fff;
+}
+
+.btn-complete:hover {
+  opacity: 0.85;
+}
+
+.btn-delete {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+.btn-delete:hover {
+  opacity: 0.85;
+}
+
+.btn-submit {
+  background-color: var(--primary-color);
+  color: var(--accent-color-2);
+  border: 1px solid var(--accent-color-1);
+  border-radius: 50px;
+  padding: 0.5rem 2rem;
+  font-size: 0.85rem;
+  align-self: center;
+  margin-top: 1rem;
+}
+
+.btn-submit:hover {
+  background-color: var(--accent-color-1);
+  color: var(--primary-color);
+}
+
+.btn-link {
+  color: var(--accent-color-2);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+/************ AUDIT LOG SPECIFIC ************/
+
+.audit-table {
+  font-size: 0.82rem;
+}
+
+.audit-table thead th {
+  font-size: 0.8rem;
+}
+
+.log-timestamp {
+  white-space: nowrap;
+  font-size: 0.82rem;
+}
+
+.log-count {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 0.5rem;
+}
+
+/************ ROLE BADGES ************/
+
+.role-badge {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.role-admin {
+  background-color: #e2d9f3;
+  color: #3d0a91;
+  border: 1px solid #6f42c1;
+}
+
+.role-employee {
+  background-color: #d1e7dd;
+  color: #0a3622;
+  border: 1px solid #198754;
+}
+
+.role-client {
+  background-color: #cfe2ff;
+  color: #084298;
+  border: 1px solid #0d6efd;
+}
+
+/************ ACTION BADGES (audit log) ************/
+
+.action-badge {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  white-space: nowrap;
+  letter-spacing: 0.03em;
+}
+
+.action-created {
+  background-color: #d1e7dd;
+  color: #0a3622;
+}
+.action-confirmed {
+  background-color: #d1e7dd;
+  color: #0a3622;
+}
+.action-cancelled {
+  background-color: #f8d7da;
+  color: #58151c;
+}
+.action-completed {
+  background-color: #cfe2ff;
+  color: #084298;
+}
+.action-deleted {
+  background-color: #e2e3e5;
+  color: #383d41;
+}
+
+/************ CANCEL REASON ************/
+
+.cancel-reason {
+  color: #dc3545;
+  font-size: 0.82rem;
+}
+
+/************ COUNT BADGE (section headings) ************/
+
+.count-badge {
+  display: inline-block;
+  background-color: var(--accent-color-2);
+  color: #fff;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.1rem 0.5rem;
+  margin-left: 0.4rem;
+  vertical-align: middle;
+}
+
+/************ SECTION HEADINGS IN MANAGE VIEW ************/
+
+#manage-appointments h2,
+#my-appointments h2,
+#audit-log h2 {
+  margin: 1.5rem 0 0.5rem;
+  font-size: 1.1em;
+  color: var(--accent-color-1);
+  border-bottom: 2px solid var(--accent-color-3);
+  padding-bottom: 0.3rem;
+}
+
+/************ BACK / MANAGEMENT LINKS ************/
+
+.mgmt-links {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--accent-color-3);
+}
+
+.mgmt-links p {
+  margin-bottom: 0.4rem;
+}
+
+.mgmt-links a {
+  color: var(--accent-color-2);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.mgmt-links a:hover {
+  text-decoration: underline;
+}
+
+.back-link {
+  margin-top: 1.5rem;
+}
+
+.back-link a {
+  color: var(--accent-color-2);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.back-link a:hover {
+  text-decoration: underline;
+}
+
+/************ NOTICE PARAGRAPH ************/
+
+p.notice {
+  background-color: var(--accent-color-3);
+  border-left: 4px solid var(--accent-color-2);
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  border-radius: 0 4px 4px 0;
+}
+
+/************ RESPONSIVE — appointment tables on small screens ************/
+
+@media only screen and (max-width: 639px) {
+  .appointment-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .action-buttons form {
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+}

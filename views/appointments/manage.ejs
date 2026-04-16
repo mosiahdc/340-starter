@@ -1,0 +1,179 @@
+<h1><%= title %></h1>
+
+<%- messages() %>
+
+<% if (locals.errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<section id="manage-appointments">
+
+  <% if (appointments.length === 0) { %>
+    <p class="notice">No appointments found.</p>
+
+  <% } else { %>
+
+    <%
+      const pending   = appointments.filter(a => a.status === 'pending')
+      const confirmed = appointments.filter(a => a.status === 'confirmed')
+      const completed = appointments.filter(a => a.status === 'completed')
+      const cancelled = appointments.filter(a => a.status === 'cancelled')
+    %>
+
+    <!-- PENDING -->
+    <% if (pending.length > 0) { %>
+      <h2>Pending Requests <span class="count-badge"><%= pending.length %></span></h2>
+      <table class="appointment-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Client</th>
+            <th>Vehicle</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Phone</th>
+            <th>Notes</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% pending.forEach(appt => { %>
+            <tr>
+              <td>#<%= appt.appointment_id %></td>
+              <td><%= appt.account_firstname %> <%= appt.account_lastname %><br><small><%= appt.account_email %></small></td>
+              <td><a href="/inv/detail/<%= appt.inv_id %>"><%= appt.inv_year %> <%= appt.inv_make %> <%= appt.inv_model %></a></td>
+              <td><%= new Date(appt.appointment_date).toLocaleDateString('en-US', { timeZone: 'UTC', month: 'short', day: 'numeric', year: 'numeric' }) %></td>
+              <td>
+                <%
+                  const [h2, m2] = appt.appointment_time.split(':')
+                  const hr2 = parseInt(h2)
+                  const ap2 = hr2 >= 12 ? 'PM' : 'AM'
+                  const dh2 = hr2 % 12 === 0 ? 12 : hr2 % 12
+                %>
+                <%= dh2 %>:<%= m2 %> <%= ap2 %>
+              </td>
+              <td><%= appt.contact_phone %></td>
+              <td><%= appt.notes || '—' %></td>
+              <td class="action-buttons">
+                <form action="/appointments/update-status" method="post" style="display:inline;">
+                  <input type="hidden" name="appointment_id" value="<%= appt.appointment_id %>">
+                  <input type="hidden" name="new_status" value="confirmed">
+                  <button type="submit" class="btn-confirm">Confirm</button>
+                </form>
+                <form action="/appointments/update-status" method="post" style="display:inline;">
+                  <input type="hidden" name="appointment_id" value="<%= appt.appointment_id %>">
+                  <input type="hidden" name="new_status" value="cancelled">
+                  <button type="submit" class="btn-cancel">Cancel</button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <% } %>
+
+    <!-- CONFIRMED -->
+    <% if (confirmed.length > 0) { %>
+      <h2>Confirmed <span class="count-badge"><%= confirmed.length %></span></h2>
+      <table class="appointment-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Client</th>
+            <th>Vehicle</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Phone</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% confirmed.forEach(appt => { %>
+            <tr>
+              <td>#<%= appt.appointment_id %></td>
+              <td><%= appt.account_firstname %> <%= appt.account_lastname %></td>
+              <td><a href="/inv/detail/<%= appt.inv_id %>"><%= appt.inv_year %> <%= appt.inv_make %> <%= appt.inv_model %></a></td>
+              <td><%= new Date(appt.appointment_date).toLocaleDateString('en-US', { timeZone: 'UTC', month: 'short', day: 'numeric', year: 'numeric' }) %></td>
+              <td>
+                <%
+                  const [h3, m3] = appt.appointment_time.split(':')
+                  const hr3 = parseInt(h3)
+                  const ap3 = hr3 >= 12 ? 'PM' : 'AM'
+                  const dh3 = hr3 % 12 === 0 ? 12 : hr3 % 12
+                %>
+                <%= dh3 %>:<%= m3 %> <%= ap3 %>
+              </td>
+              <td><%= appt.contact_phone %></td>
+              <td class="action-buttons">
+                <form action="/appointments/update-status" method="post" style="display:inline;">
+                  <input type="hidden" name="appointment_id" value="<%= appt.appointment_id %>">
+                  <input type="hidden" name="new_status" value="completed">
+                  <button type="submit" class="btn-complete">Complete</button>
+                </form>
+                <form action="/appointments/update-status" method="post" style="display:inline;">
+                  <input type="hidden" name="appointment_id" value="<%= appt.appointment_id %>">
+                  <input type="hidden" name="new_status" value="cancelled">
+                  <button type="submit" class="btn-cancel">Cancel</button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <% } %>
+
+    <!-- COMPLETED + CANCELLED (Admin sees delete button) -->
+    <% if (completed.length > 0 || cancelled.length > 0) { %>
+      <h2>History</h2>
+      <table class="appointment-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Client</th>
+            <th>Vehicle</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Reason</th>
+            <% if (locals.accountData && locals.accountData.account_type === 'Admin') { %>
+              <th>Actions</th>
+            <% } %>
+          </tr>
+        </thead>
+        <tbody>
+          <% [...completed, ...cancelled].forEach(appt => { %>
+            <tr>
+              <td>#<%= appt.appointment_id %></td>
+              <td><%= appt.account_firstname %> <%= appt.account_lastname %></td>
+              <td><%= appt.inv_year %> <%= appt.inv_make %> <%= appt.inv_model %></td>
+              <td><%= new Date(appt.appointment_date).toLocaleDateString('en-US', { timeZone: 'UTC', month: 'short', day: 'numeric', year: 'numeric' }) %></td>
+              <td><span class="status-badge status-<%= appt.status %>"><%= appt.status.charAt(0).toUpperCase() + appt.status.slice(1) %></span></td>
+              <td><%= appt.cancellation_reason || '—' %></td>
+              <% if (locals.accountData && locals.accountData.account_type === 'Admin') { %>
+                <td>
+                  <form action="/appointments/delete" method="post"
+                    onsubmit="return confirm('Permanently delete this record? This cannot be undone.');">
+                    <input type="hidden" name="appointment_id" value="<%= appt.appointment_id %>">
+                    <button type="submit" class="btn-delete">Delete</button>
+                  </form>
+                </td>
+              <% } %>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <% } %>
+
+  <% } %>
+
+  <div class="mgmt-links">
+    <% if (locals.accountData && locals.accountData.account_type === 'Admin') { %>
+      <p><a href="/appointments/audit-log">View Full Audit Log &rarr;</a></p>
+    <% } %>
+    <p><a href="/account/">&larr; Back to Account Management</a></p>
+  </div>
+
+</section>

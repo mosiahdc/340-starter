@@ -4,4 +4,91 @@
 
 <%- messages() %>
 
+<% if (locals.errors) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+<% } %>
+
 <%- grid %>
+
+<!-- ===== TEST DRIVE REQUEST SECTION ===== -->
+<section id="test-drive-section">
+  <h2>Request a Test Drive</h2>
+
+  <% if (locals.loggedin && locals.accountData.account_type === 'Client') { %>
+
+    <form action="/appointments/request" method="post" id="testDriveForm" class="form-container" novalidate="novalidate">
+
+      <fieldset>
+        <legend>Schedule Your Test Drive</legend>
+
+        <%# inv_id is passed directly from the controller into this view %>
+        <input type="hidden" name="inv_id" value="<%= locals.inv_id %>">
+
+        <label for="appointment_date">
+          Preferred Date <span class="required" aria-label="required">*</span>
+        </label>
+        <input
+          type="date"
+          name="appointment_date"
+          id="appointment_date"
+          required
+          min="<%= new Date().toISOString().split('T')[0] %>"
+          value="<%= locals.appointment_date || '' %>"
+        >
+
+        <label for="appointment_time">
+          Preferred Time <span class="required" aria-label="required">*</span>
+        </label>
+        <select name="appointment_time" id="appointment_time" required>
+          <option value="">-- Select a time --</option>
+          <option value="09:00" <%= locals.appointment_time === '09:00' ? 'selected' : '' %>>9:00 AM</option>
+          <option value="10:00" <%= locals.appointment_time === '10:00' ? 'selected' : '' %>>10:00 AM</option>
+          <option value="11:00" <%= locals.appointment_time === '11:00' ? 'selected' : '' %>>11:00 AM</option>
+          <option value="13:00" <%= locals.appointment_time === '13:00' ? 'selected' : '' %>>1:00 PM</option>
+          <option value="14:00" <%= locals.appointment_time === '14:00' ? 'selected' : '' %>>2:00 PM</option>
+          <option value="15:00" <%= locals.appointment_time === '15:00' ? 'selected' : '' %>>3:00 PM</option>
+          <option value="16:00" <%= locals.appointment_time === '16:00' ? 'selected' : '' %>>4:00 PM</option>
+        </select>
+
+        <label for="contact_phone">
+          Contact Phone <span class="required" aria-label="required">*</span>
+        </label>
+        <input
+          type="tel"
+          name="contact_phone"
+          id="contact_phone"
+          placeholder="e.g. 555-123-4567"
+          required
+          pattern="^[0-9\+\-\(\)\s]{7,20}$"
+          title="Please enter a valid phone number."
+          value="<%= locals.contact_phone || '' %>"
+        >
+
+        <label for="notes">Additional Notes (optional)</label>
+        <textarea
+          name="notes"
+          id="notes"
+          rows="3"
+          maxlength="500"
+          placeholder="Any special requests or questions?"
+        ><%= locals.notes || '' %></textarea>
+
+        <button type="submit" class="btn-submit">Submit Request</button>
+      </fieldset>
+    </form>
+
+  <% } else if (locals.loggedin && locals.accountData.account_type !== 'Client') { %>
+    <p class="notice">Test drive requests are available for Client accounts.</p>
+
+  <% } else { %>
+    <p>
+      <a href="/account/login">Log in</a> or
+      <a href="/account/register">create an account</a>
+      to request a test drive for this vehicle.
+    </p>
+  <% } %>
+</section>

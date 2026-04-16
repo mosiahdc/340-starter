@@ -176,4 +176,17 @@ Util.checkAccountType = (req, res, next) => {
     }
 }
 
+/* ****************************************
+ * Middleware to check Admin account type only
+ * Used for delete and audit log routes
+ **************************************** */
+Util.checkAdminOnly = (req, res, next) => {
+    if (res.locals.loggedin && res.locals.accountData.account_type === "Admin") {
+        next()
+    } else {
+        req.flash("notice", "This area is restricted to Administrators only.")
+        return res.redirect("/account/login")
+    }
+}
+
 module.exports = Util

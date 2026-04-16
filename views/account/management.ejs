@@ -14,7 +14,18 @@
 
 <p><a href="/account/update/<%= locals.accountData.account_id %>">Update Account Information</a></p>
 
+<!-- Test Drive link visible to ALL logged-in users -->
+<p><a href="/appointments/my">My Test Drive Appointments</a></p>
+
 <% if (locals.accountData.account_type === "Employee" || locals.accountData.account_type === "Admin") { %>
   <h3>Inventory Management</h3>
   <p><a href="/inv/">Manage Inventory</a></p>
+
+  <h3>Appointment Management</h3>
+  <p><a href="/appointments/manage">Manage Test Drive Appointments</a></p>
+<% } %>
+
+<% if (locals.accountData.account_type === "Admin") { %>
+  <h3>Admin Tools</h3>
+  <p><a href="/appointments/audit-log">View Appointment Audit Log</a></p>
 <% } %>

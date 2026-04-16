@@ -22,6 +22,7 @@ invCont.buildByClassificationId = utilities.handleErrors(async function (req, re
 
 /* ***************************
  *  Build details by InventoryID view
+ *  inv_id is passed to the view so the test drive form hidden field is populated
  * ************************** */
 invCont.buildByInventoryID = utilities.handleErrors(async function (req, res, next) {
     const inv_id = req.params.inventoryId
@@ -34,6 +35,7 @@ invCont.buildByInventoryID = utilities.handleErrors(async function (req, res, ne
         nav,
         grid,
         errors: null,
+        inv_id: data[0].inv_id,  // needed by the test drive request form
     })
 })
 
